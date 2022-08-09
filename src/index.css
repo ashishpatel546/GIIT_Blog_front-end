@@ -1,0 +1,172 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("../public/bg.jpg");
+  background-size: cover;
+}
+
+.right{
+  display: flex;
+}
+.left{
+  margin-left: auto;
+  display: flex;
+}
+
+.nav-container{
+ display:flex;
+}
+
+.blogs-container{
+  border: 1px solid black;
+  margin-top: 60px;
+  filter: contrast(2px);
+  padding: 10px;
+}
+
+.blog{
+  background-color: white;
+  margin:20px;
+  filter: blur(0px) !important;
+  padding: 10px;
+  border-radius: 15px;
+  
+}
+
+.blog-container{
+  margin: 5px;
+  border:1px solid brown;
+  border-radius: 15px;
+  padding: 5px;
+  position: relative;
+}
+
+.published-by{
+  font-size: 0.8em;
+}
+
+.name{
+  color: brown;
+}
+
+.sign-up{
+  margin-top: 60px;
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 60px;
+}
+
+.log-in{
+  margin-top: 150px;
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 60px;
+
+}
+
+.form-container{
+  margin: 10px;
+}
+
+.log-out{
+  color: white;
+  
+  border: 1px solid white !important;
+  border-radius: 10px !important;
+  margin-left: auto;
+  }
+  .log-out:hover{
+    background-color: black;
+    float: right;
+  }
+  .after-login{
+    margin-left: 0px;
+    display: flex;
+    float: right;
+  }
+
+  .home-div1{
+   margin-top: 20px;
+
+  }
+
+  .new-blog-btn{
+    margin-left: 10px;
+    background-color: brown !important;
+    border-color: chocolate !important;
+    color: white !important;
+  }
+
+  .new-blog-btn:hover{
+    background-color: rgb(90, 22, 22) !important;
+  }
+
+  .new-blog-form{
+    width:70%;
+    
+  } 
+
+  .new-form-container{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    background-color: rgba(73, 12, 12, 0.5);
+    padding: 20px;
+    width:80vw !important;
+    color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  .new-blog-text{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    color: rgb(99, 25, 25);
+  }
+
+  .blog-post-btn{
+    background-color:rgba(99, 25, 25,0.9) !important;
+    border: none !important;
+  }
+
+  i {
+    padding: 5px;
+    cursor: pointer;
+  }
+  .icons-container{
+    position:absolute;
+   top:0;
+   right:0;
+   margin: 5px;
+  }
+
+  .read-more{
+    text-decoration: none;
+    color:brown
+  }
+
+  .read-more:hover{
+    color: darkgreen;
+  }
+
+  .blog-desc{
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  }
+
+  .urls{
+    color:darkolivegreen
+  }
+
+  .urls:hover{
+    color: darkgreen;
+  }
