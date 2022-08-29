@@ -1,6 +1,7 @@
 import { useState,useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import EditBlog from './EditBlog';
+import blogimg from './pic2.jpg';
 
 const Blog=({url})=>{
 
@@ -76,6 +77,7 @@ const Blog=({url})=>{
                         :null
                     }
                     
+                    <img className="img-fluid"alt="blog-img" src={blogimg} height="100"/>
                     <div className='text-center published-by'><em>Published on {formatDate(b.created_on)}</em></div>
                     <h3 className='text-center'>{b.title}</h3>
                     <div className='text-center'><em>By <span className='name'>{b.user.name}</span></em></div>
