@@ -7,6 +7,7 @@ import Home from './Components/Home';
 import NewBlog from './Components/NewBlog';
 import MyBlogs from './Components/MyBlogs';
 import FullBlog from './Components/FullBlog';
+import Profile from './Components/Profile';
 
 const App=()=> {
   const [isAuthenticated,setAuthenticated]=useState(false);
@@ -50,6 +51,7 @@ const App=()=> {
       <Route path="/login" element={!isAuthenticated?(<Login setAuth={setAuth}/>):(<Home setAuth={setAuth} isauth={isAuthenticated}/>)}></Route>
       <Route path="/newblog" element={isAuthenticated?(<NewBlog setAuth={setAuth} isauth={isAuthenticated}/>):(<Login setAuth={setAuth}/>)}></Route>
       <Route path="/fullblog" element={isAuthenticated?(<FullBlog setAuth={setAuth} isauth={isAuthenticated}/>):(<Login setAuth={setAuth}/>)}></Route>
+      <Route path="/profile" element={isAuthenticated?(<Profile setAuth={setAuth} isauth={isAuthenticated}/>):(<Login setAuth={setAuth}/>)}></Route>
      </Routes>
      
     </>

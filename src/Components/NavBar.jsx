@@ -41,7 +41,16 @@ const NavBar = ({ setAuth, isauth }) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <div className="before-left">
-                <Nav.Link as={Link} to="/login">Write a Blog<i class="fa-solid fa-feather-pointed"></i>
+                {isauth ?
+                  <div className="after-login">
+                    <Nav.Link as={Link} to="/home">Home</Nav.Link>
+                    <Nav.Link as={Link} to="/myblogs">MyBlogs</Nav.Link>
+
+
+                  </div>
+                  : null
+                }
+                <Nav.Link as={Link} to="/newblog">Write a Blog<i class="fa-solid fa-feather-pointed"></i>
                 </Nav.Link>
                 <NavDropdown title="Categories" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -52,9 +61,9 @@ const NavBar = ({ setAuth, isauth }) => {
 
                 </NavDropdown>
 
-               
+
                 <div className="search-bar">
-                  <input type="text" className="search-input"/>
+                  <input type="text" className="search-input" />
                   <Button className="search-btn"><i class="fa-solid fa-magnifying-glass"></i></Button>
                 </div>
               </div>
@@ -65,22 +74,8 @@ const NavBar = ({ setAuth, isauth }) => {
 
 
 
-              {isauth ?
-                <div className="after-login">
-                  <Nav.Link as={Link} to="/home">Home</Nav.Link>
-                  <Nav.Link as={Link} to="/myblogs">MyBlogs</Nav.Link>
 
 
-                </div>
-                : null
-              }
-              {isauth ?
-
-                <Nav.Link className="btn log-out" as={Link} to="/landing" role="button" onClick={e => logout(e)} >
-                  Logout</Nav.Link>
-
-                : null
-              }
 
 
 
@@ -91,6 +86,17 @@ const NavBar = ({ setAuth, isauth }) => {
                 <Nav.Link className="btn-login" as={Link} to="/signup">Signup<i class="fa-solid fa-user-plus"></i>
                 </Nav.Link>
               </div>
+              : null
+            }
+            {isauth ?
+              <div className="left">
+                <Nav.Link className="btn-login" as={Link} to="/profile" role="button" >
+                My Profile<i class="fa-solid fa-user"></i></Nav.Link>
+                 <Nav.Link className="btn-login" as={Link} to="/landing" role="button" onClick={e => logout(e)} >
+                Logout<i class="fa-solid fa-right-from-bracket"></i></Nav.Link>
+              </div>
+              
+
               : null
             }
           </Navbar.Collapse>
