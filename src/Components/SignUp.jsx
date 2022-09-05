@@ -41,7 +41,7 @@ const SignUp = () => {
     return (
         <>
             <NavBar/>
-            <div className="container sign-up w-50">
+            <div className="container log-in w-50">
                 <div className="text-center">
                     <h3>Create Your Account</h3>
                 </div>

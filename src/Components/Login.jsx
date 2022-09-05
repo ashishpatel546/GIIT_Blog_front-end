@@ -69,6 +69,7 @@ const Login = ({setAuth}) => {
     return (
         <>
             <NavBar setAuth={setAuth1}/>
+            <div className='outer-log-in'>
             <div className="container log-in w-50">
                 <div className="text-center">
                     <h3>Login to Your Account</h3>
@@ -97,6 +98,8 @@ const Login = ({setAuth}) => {
                     </Form>
                 </div>
             </div>
+            </div>
+            
         </>
     )
 }
