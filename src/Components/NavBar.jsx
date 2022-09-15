@@ -53,11 +53,15 @@ const NavBar = ({ setAuth, isauth }) => {
                 <Nav.Link as={Link} to="/newblog">Write a Blog<i class="fa-solid fa-feather-pointed"></i>
                 </Nav.Link>
                 <NavDropdown title="Categories" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.1">Frontend</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">Backend</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">Javascript</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">Java</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">NestJS</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">NodeJS</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">ReactJS</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">Devops</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">Others</NavDropdown.Item>
 
                 </NavDropdown>
 

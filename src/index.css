@@ -1,8 +1,9 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+  font-family: Georgia, 'Times New Roman', Times, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background-image: url("../public/bg3.png"); */
@@ -128,6 +129,7 @@ li{
 {
   background-color: transparent;
   margin: 0 !important;
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
 }
 /* .nav-container{
  display:flex !important;
@@ -153,20 +155,26 @@ li{
   background-image: linear-gradient(to right,rgb(110, 163, 198),rgb(35, 99, 168));
   background-size: cover;
   padding: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+
 }
 .tag-line{
   font-size: 0.3em !important;
   color: white;
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+
 }
 
 .categories-title{
-  text-shadow:1px 1px 1px palevioletred ;
+  text-shadow:1px 1px 1px rgb(84, 164, 167) ;
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+
 }
 
 .categories{
-    margin: 30px;
-    display: flex;
-    justify-content: center;
+    margin: 30px !important;
+    display: flex !important;
+    justify-content: center !important;
 }
 
 .category-btn{
@@ -186,6 +194,8 @@ li{
   text-shadow: 1px 1px 1px black;
   box-shadow: 2px 2px black;
   transition: all 0.5s;
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+
 }
 
 .category-btn:hover{
@@ -194,6 +204,15 @@ li{
   text-shadow: none;
   color: white !important;
   background-color:  rgb(108, 169, 190);
+}
+
+.categories-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.carousel{
+  width: 70%;
 }
 .blog{
   background-color: white;
@@ -253,22 +272,12 @@ li{
     float: right;
   }
 
-  
-
- 
-
-  
-
-  .new-blog-form{
-    width:70%;
-    
-  } 
 
   .new-form-container{
     display: flex;
     justify-content: center;
     margin: 20px;
-    background-color: rgba(73, 12, 12, 0.5);
+    background-color: rgba(18, 80, 97, 0.6);
     padding: 20px;
     width:80vw !important;
     color: white;
@@ -282,9 +291,12 @@ li{
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
-    color: rgb(99, 25, 25);
+    color: rgb(31, 102, 118);
   }
 
+  .new-blog-form{
+    width: 80%;
+  }
   .blog-post-btn{
     background-color: rgb(33, 94, 155) !important;
     border: none !important;

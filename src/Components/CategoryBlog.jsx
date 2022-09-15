@@ -1,17 +1,20 @@
-import { useState,useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import EditBlog from './EditBlog';
+import NavBar from "./NavBar";
+import { useLocation,NavLink } from "react-router-dom";
+import { useState,useEffect } from "react";
 import blogimg from './pic2.jpg';
 
-const Blog=({url})=>{
+const CategoryBlog=({setAuth,isauth})=>{
+
+    const location = useLocation()
+    const { cat } = location.state
+    console.log(cat);                   
 
     const [blog,setBlog]=useState([]);
    
 
     const fetchblog=async ()=>{
         try{
-            console.log('Fetching data');
-        const response= await fetch(`http://[::1]:8000/blogs/${url}`,{
+        const response= await fetch(`http://[::1]:8000/blogs/category/${cat}`,{
             headers:{
                 
                 "Authorization":`Bearer ${localStorage.getItem('token')}`
@@ -22,10 +25,7 @@ const Blog=({url})=>{
         //console.log(response);
         const data = await response.json()
         console.log(data);
-        // let resp = JSON.parse(response);
-        // const res = JSON.parse(resp);
-        // console.log(res)
-        // const data= Array.from(res.data);
+       
         setBlog(data)
         
         
@@ -35,20 +35,7 @@ const Blog=({url})=>{
         
     }
 
-    const deletePost=async(id)=>{
-        try{
-         const deletePost= await fetch(`http://[::1]:8000/blogs/${id}`,{
-          method:"DELETE",
-          headers:{
-            "Authorization":`Bearer ${localStorage.getItem('token')}`
-          },
-         })
     
-         setBlog(blog.filter(b=>b.id!==id));        //to delete from page instantly without refreshing
-        }catch(err){
-          console.error(err.message);
-        }
-      }
 
     const formatDate = (dateString) => {
         const options = { year: "numeric", month: "long", day: "numeric" }
@@ -60,22 +47,15 @@ const Blog=({url})=>{
         
     },[])
 
-    return(
+
+       return (
         <>
-        
-        
-              {blog.map(b => (
+           <NavBar setAuth={setAuth} isauth={isauth}/>
+           {cat}
+           {blog.map(b => (
                 <div key={b.id} className="container blog">
                    
                     <div className='blog-container'>
-                    { window.location.pathname=='/myblogs' ?
-                        <div className='icons-container'>
-                    
-                        <EditBlog b={b}/>
-                        <i class="fa-solid fa-trash-can" onClick={()=>deletePost(b.id)}></i>
-                        </div>
-                        :null
-                    }
                     
                     <img className="img-fluid"alt="blog-img" src={blogimg} height="100"/>
                     <div className='text-center published-by'><em>Published on {formatDate(b.created_on)}</em></div>
@@ -106,10 +86,8 @@ const Blog=({url})=>{
                 </div>   
               ))
              }
-    
         </>
-    )
-   
+       )
 }
 
-export default Blog;
+export default CategoryBlog;

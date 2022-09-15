@@ -6,21 +6,22 @@ import { Form } from 'react-bootstrap';
 
 
 
-const EditBlog = ({ id }) => {
+const EditBlog = ({b}) => {
 
     const [lgShow, setLgShow] = useState(false);
-    const [title, setTitle] = useState("");
-    const [description, setDesc] = useState("");
-    const [keys, setKeys] = useState([]);
-    const [urls, setUrls] = useState([]);
+
+    const [title, setTitle] = useState(b.title);
+    const [description, setDesc] = useState(b.description);
+    const [keys, setKeys] = useState(b.keys);
+    const [urls, setUrls] = useState(b.urls);
 
 
     const updateBlog = async e => {
         e.preventDefault();
         try {
 
-            const body = { title, description, keys, urls };;
-            const response = await fetch(`http://[::1]:8000/blogs/${id}`, {
+            const body = { title, description, keys, urls };
+            const response = await fetch(`http://[::1]:8000/blogs/${b.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -45,7 +46,7 @@ const EditBlog = ({ id }) => {
                 show={lgShow}
                 onHide={() => setLgShow(false)}
                 aria-labelledby="example-modal-sizes-title-lg"
-                id={`id${id}`}
+                id={`id${b.id}`}
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
@@ -53,7 +54,7 @@ const EditBlog = ({ id }) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form className="new-blog-form" onSubmit={updateBlog}>
+                    <Form  onSubmit={updateBlog}>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Title</Form.Label>
                             <Form.Control type="text" placeholder="Enter Title" value={title} onChange={e => setTitle(e.target.value)} name="title" />
