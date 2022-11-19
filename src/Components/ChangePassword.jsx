@@ -2,6 +2,9 @@ import { Button } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const ChangePassword = () => {
 
@@ -24,11 +27,12 @@ const ChangePassword = () => {
 
     const onSubmitForm=async(e)=>{
         e.preventDefault();
+        let parseRes
         try {
 
             const body={pw_old,pw_new1,pw_new2};
 
-            const response = await fetch(`http://[::1]:8000/auth/change-password`,{
+            const response = await fetch(`${process.env.REACT_APP_URL_PREFIX}/auth/change-password`,{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json',
@@ -37,13 +41,16 @@ const ChangePassword = () => {
                 body: JSON.stringify(body)
             });
 
-            const parseRes= await response.json();
-            console.log(parseRes);
-
-            window.location='/profile'
+             parseRes= await response.json();
+            //console.log(parseRes);
+            toast.error(parseRes.message)
+            
+            //window.location='/profile'
             
         } catch (error) {
-            console.error(error.message)
+            //console.error(error.message)
+            toast.error(parseRes.message)
+            //console.log(parseRes.message)
         }
     }
     return (

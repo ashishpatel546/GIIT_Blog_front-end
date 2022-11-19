@@ -1,7 +1,6 @@
-import { getSuggestedQuery } from "@testing-library/react";
+
 import { useEffect } from "react";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
 import NavBar from "./NavBar";
 import usericon from './usericon.png'
 import ChangePassword from "./ChangePassword";
@@ -12,17 +11,32 @@ const formatDate = (dateString) => {
 }
 const Profile = ({ setAuth, isauth }) => {
 
-    const [user, setUser] = useState({});
-    useEffect(async () => {
-        const resp = await fetch('http://[::1]:8000/user/fetch/currentuser', {
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem('token')}`
-            }
-        });
-        const data = await resp.json();
-        setUser(data)
-    }, [setUser])
+    // const [user, setUser] = useState({});
+    // useEffect(async () => {
+    //     const resp = await fetch('http://[::1]:8000/user/fetch/currentuser', {
+    //         headers: {
+    //             "Authorization": `Bearer ${localStorage.getItem('token')}`
+    //         }
+    //     });
+    //     const data = await resp.json();
+    //     setUser(data)
+    // }, [setUser])
 
+    const [user, setUser] = useState({});
+
+    const fetchUser=async()=>{
+        const resp = await fetch(`${process.env.REACT_APP_URL_PREFIX}/user/fetch/currentuser`, {
+                    headers: {
+                        "Authorization": `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                const data = await resp.json();
+                setUser(data)
+    }
+
+    useEffect(()=>{
+        fetchUser()
+    },[])
     return (
         <>
             <NavBar setAuth={setAuth} isauth={isauth} />

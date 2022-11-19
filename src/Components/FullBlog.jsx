@@ -1,7 +1,8 @@
 import NavBar from "./NavBar";
 import { useState, useEffect } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
-import EditBlog from "./EditBlog";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const FullBlog = ({ setAuth, isauth }) => {
 
@@ -20,8 +21,8 @@ const FullBlog = ({ setAuth, isauth }) => {
   const getblog = async () => {
     // setBlog({name: 'ashish'})
     try {
-      console.log('Fetching data');
-      const response = await fetch(`http://[::1]:8000/blogs/${state.id}`, {
+    
+      const response = await fetch(`${process.env.REACT_APP_URL_PREFIX}/blogs/${state.id}`, {
         headers: {
 
           "Authorization": `Bearer ${localStorage.getItem('token')}`
@@ -33,14 +34,15 @@ const FullBlog = ({ setAuth, isauth }) => {
       setBlog([data])
 
     } catch (err) {
-      console.error(err.message);
+      //console.error(err.message);
+      toast.error(err.message)
     }
   }
-  console.log(blog);
+ 
 
   const deletePost = async (id) => {
     try {
-      const deletePost = await fetch(`http://[::1]:8000/blogs/${id}`, {
+      const deletePost = await fetch(`${process.env.REACT_APP_URL_PREFIX}/blogs/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": `Bearer ${localStorage.getItem('token')}`
@@ -49,7 +51,8 @@ const FullBlog = ({ setAuth, isauth }) => {
 
       setBlog(blog.filter(b => b.id !== id));        //to delete from page instantly without refreshing
     } catch (err) {
-      console.error(err.message);
+      //console.error(err.message);
+      toast.error(err.message)
     }
   }
 
@@ -75,7 +78,18 @@ const FullBlog = ({ setAuth, isauth }) => {
           <h3 className='text-center'>{b.title}</h3>
           <div className='text-center'><em>By <span className='name'>{b.user.name}</span></em></div>
           <p className='text-center blog-desc'>{b.description} 
-            
+          { b.urls.length>0 ?
+                   
+                   <div className='useful-links text-center'>Useful Links:<br/>
+                   {
+                    b.urls.map(u=>(
+                      <NavLink className="urls" to={u}>{u} , </NavLink>
+                    ))
+                   }
+                  </div>
+                  
+                   :null
+               }
 
         </p>
         </div>

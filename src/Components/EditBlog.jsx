@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { Form } from 'react-bootstrap';
-
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -21,7 +22,7 @@ const EditBlog = ({b}) => {
         try {
 
             const body = { title, description, keys, urls };
-            const response = await fetch(`http://[::1]:8000/blogs/${b.id}`, {
+            const response = await fetch(`${process.env.REACT_APP_URL_PREFIX}/blogs/${b.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -30,9 +31,10 @@ const EditBlog = ({b}) => {
                 body: JSON.stringify(body)
             });
             window.location = '/myblogs';
-            console.log(response.json());
+           
         } catch (err) {
-            console.error(err.message);
+            //console.error(err.message);
+            toast.error(err.message)
         }
     }
 

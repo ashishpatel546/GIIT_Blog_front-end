@@ -1,6 +1,8 @@
 import NavBar from './NavBar';
 import { Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
 
@@ -24,18 +26,19 @@ const SignUp = () => {
         try {
 
             const body = {name, password,email,country,mobile };
-            const response = await fetch('http://[::1]:8000/auth/signup', {
+            const response = await fetch(`${process.env.REACT_APP_URL_PREFIX}/auth/signup`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
 
             const parseRes = await response.json();
-            console.log(parseRes);
+            
             
             window.location="/login"
             } catch (err) {
-            console.error(err.message);
+            //console.error(err.message);
+            toast.error(err.message)
         }
     }
     return (
@@ -82,6 +85,7 @@ const SignUp = () => {
                                 <option value="3">Nepal</option>
                                 <option value="4">Other</option>
                             </Form.Select>
+                            
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             <Form.Check required type="checkbox" label="I Agree to Terms and Conditions" />

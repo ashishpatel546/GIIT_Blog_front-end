@@ -9,8 +9,8 @@ const Home=({setAuth,isauth})=>{
         <>
         <NavBar setAuth={setAuth} isauth={isauth}/>
         
-        <div>
-        <Blog url="find-all?sorted_by=DESC&limit=5"/>
+        <div className="blogs-grid">
+        <Blog url="find-all?sorted_by=DESC"/>
         </div>
         </>
     )

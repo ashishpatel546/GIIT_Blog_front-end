@@ -6,7 +6,10 @@ const MyBlogs=({setAuth,isauth})=>{
 
         <>
         <NavBar setAuth={setAuth} isauth={isauth}/>
+        <div className="blogs-grid">
         <Blog url="myblogs"/>
+        </div>
+        
         </>
     )
 }

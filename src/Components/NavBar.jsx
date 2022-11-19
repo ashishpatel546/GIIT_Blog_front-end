@@ -1,8 +1,11 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import logo from './logo1.png'
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { Form } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
+import { useState } from "react";
+import SearchBlogs from "./SearchBlogs";
 
 const NavBar = ({ setAuth, isauth }) => {
 
@@ -17,6 +20,14 @@ const NavBar = ({ setAuth, isauth }) => {
 
     setAuth1(false);
   }
+
+  const categories1 = ["Frontend", "Backend", "NodeJS", "NestJS", "ReactJS", "Java", "Javascript", "Devops", "Other"]
+
+  // const [searchKeys, setSearchKeys] = useState([]);
+
+  
+
+
 
   return (
     <>
@@ -43,33 +54,38 @@ const NavBar = ({ setAuth, isauth }) => {
               <div className="before-left">
                 {isauth ?
                   <div className="after-login">
-                    <Nav.Link as={Link} to="/home">Home</Nav.Link>
-                    <Nav.Link as={Link} to="/myblogs">MyBlogs</Nav.Link>
+                    <Nav.Link className={window.location.pathname == '/home' ? "navlink2" : "navlink"} as={Link} to="/home">Home</Nav.Link>
+                    <Nav.Link className={window.location.pathname == '/myblogs' ? "navlink2" : "navlink"} as={Link} to="/myblogs">MyBlogs</Nav.Link>
 
 
                   </div>
                   : null
                 }
-                <Nav.Link as={Link} to="/newblog">Write a Blog<i class="fa-solid fa-feather-pointed"></i>
+                <Nav.Link className={window.location.pathname == '/newblog' ? "navlink2" : "navlink"} as={Link} to="/newblog">Write a Blog<i class="fa-solid fa-feather-pointed"></i>
                 </Nav.Link>
                 <NavDropdown title="Categories" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Frontend</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Backend</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Javascript</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Java</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">NestJS</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">NodeJS</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">ReactJS</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Devops</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Others</NavDropdown.Item>
+                  {
+                    categories1.map(c =>
+
+                      <NavLink className="dropdowns"
+                        to="/category"
+                        state={{ cat: `${c}` }}
+                      >{c}</NavLink>
+
+                    )
+
+                  }
 
                 </NavDropdown>
 
-
-                <div className="search-bar">
-                  <input type="text" className="search-input" />
-                  <Button className="search-btn"><i class="fa-solid fa-magnifying-glass"></i></Button>
-                </div>
+ 
+                <SearchBlogs/>
+                
+                {/* <div className="search-bar">
+                  <input type="text" className="search-input" value={searchKeys}
+                    onChange={e => setSearchKeys(e.target.value.split(','))} name="searchKeys" placeholder="enter search tags" />
+                 <Button onClick={searchBlogs} className="search-btn"><i class="fa-solid fa-magnifying-glass"></i></Button>
+                </div> */}
               </div>
 
 
@@ -95,11 +111,11 @@ const NavBar = ({ setAuth, isauth }) => {
             {isauth ?
               <div className="left">
                 <Nav.Link className="btn-login" as={Link} to="/profile" role="button" >
-                My Profile<i class="fa-solid fa-user"></i></Nav.Link>
-                 <Nav.Link className="btn-login" as={Link} to="/landing" role="button" onClick={e => logout(e)} >
-                Logout<i class="fa-solid fa-right-from-bracket"></i></Nav.Link>
+                  My Profile<i class="fa-solid fa-user"></i></Nav.Link>
+                <Nav.Link className="btn-login" as={Link} to="/landing" role="button" onClick={e => logout(e)} >
+                  Logout<i class="fa-solid fa-right-from-bracket"></i></Nav.Link>
               </div>
-              
+
 
               : null
             }

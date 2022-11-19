@@ -2,6 +2,8 @@ import NavBar from './NavBar';
 import { Form, Button } from 'react-bootstrap';
 import { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({setAuth}) => {
     
@@ -22,12 +24,14 @@ const Login = ({setAuth}) => {
         setInputs({ ...inputs, [e.target.name]: e.target.value });
     }
 
+    //const emitToast = () => toast("Wow so easy!");
+
     const onSubmitForm = async e => {
         e.preventDefault();
         try {
 
             const body = { password, email };
-            const response = await fetch('http://[::1]:8000/auth/login', {
+            const response = await fetch(`${process.env.REACT_APP_URL_PREFIX}/auth/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
@@ -35,23 +39,24 @@ const Login = ({setAuth}) => {
 
           
             const parseRes = await response.json();
-            console.log(parseRes);
+           
         
             if(parseRes.token){
                 localStorage.setItem("token",parseRes.token);
                 setAuth1(true);    //prop
-                //toast.info("logged in successfully");
-                //successT();
+                toast.success("logged in successfully");
+                //emitToast();
               }
               else{
                 setAuth1(false);
-                //toast.error(parseRes);
+                toast.error(parseRes.message);
               }
             
             
 
         } catch (err) {
-            console.error(err.message);
+           // console.error(err.message);
+           toast.error(err.message)
         }
         //window.location = "/home";
     }

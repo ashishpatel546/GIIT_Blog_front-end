@@ -15,7 +15,7 @@ const Blogs = () => {
                 <div className='most-popular'>
                     <h4 className='text-center'>Most Popular 
                       <i class="fa-solid fa-fire-flame-curved"></i></h4>
-                    <Blog url="find-all?sorted_by=DESC&limit=5" />
+                    <Blog url="find/by-likes" />
                 </div>
 
 

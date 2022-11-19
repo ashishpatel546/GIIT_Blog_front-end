@@ -9,6 +9,10 @@ import MyBlogs from './Components/MyBlogs';
 import FullBlog from './Components/FullBlog';
 import Profile from './Components/Profile';
 import CategoryBlog from './Components/CategoryBlog';
+import SearchResults from './Components/SearchResults';
+import { ToastContainer} from 'react-toastify';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App=()=> {
   const [isAuthenticated,setAuthenticated]=useState(false);
@@ -20,7 +24,7 @@ const App=()=> {
   var isauth;
   async function isAuth(){
     try{
-      const response=await fetch("http://[::1]:8000/app-check/validate-jwt",{
+      const response=await fetch(`${process.env.REACT_APP_URL_PREFIX}/app-check/validate-jwt`,{
         method:"GET",
         headers:{
           'authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -29,12 +33,13 @@ const App=()=> {
       })
 
       const parseRes= await response.json();
-      console.log(parseRes);
+      //console.log(parseRes);
       parseRes.isTokenVerified ? (setAuthenticated(true)):setAuthenticated(false);
       parseRes.isTokenVerified ? isauth=true:isauth=false;
       
     }catch(err){
-      console.error(err.message);
+      //console.error(err.message);
+      toast.error(err.message)
     }
   }
 
@@ -54,8 +59,9 @@ const App=()=> {
       <Route path="/fullblog" element={isAuthenticated?(<FullBlog setAuth={setAuth} isauth={isAuthenticated}/>):(<Login setAuth={setAuth}/>)}></Route>
       <Route path="/profile" element={isAuthenticated?(<Profile setAuth={setAuth} isauth={isAuthenticated}/>):(<Login setAuth={setAuth}/>)}></Route>
       <Route path="/category" element={<CategoryBlog setAuth={setAuth} isauth={isAuthenticated}/>}></Route>
+      <Route path="/search-results" element={<SearchResults setAuth={setAuth} isauth={isAuthenticated}/>}></Route>
      </Routes>
-     
+     <ToastContainer />
     </>
   
   );

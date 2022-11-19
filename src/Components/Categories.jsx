@@ -1,11 +1,33 @@
-import { NavLink } from "react-router-dom";
+
+import { useEffect } from "react";
+import { useState } from "react";
 import { Carousel } from "react-bootstrap";
 import CategoryButton from "./CategoryButton";
 
 
 const Categories = ({setAuth,isauth}) => {
     const categories1=["Frontend","Backend","NodeJS","NestJS"]
-    const categories2=["ReactJS","Java","Javascript","Devops","Others"]
+    const categories2=["ReactJS","Java","Javascript","Devops","Other"]
+
+    const [categories,setCategories]=useState([]);
+
+    const getCategories=async()=>{
+        const response= await fetch(`${process.env.REACT_APP_URL_PREFIX}/blogs/all/categories`,{
+         
+            headers:{
+                "Authorization":`Bearer ${localStorage.getItem('token')}`
+              },
+             
+        })
+
+        const data=await response.json()
+        setCategories(data)
+        console.log(data);
+    }
+
+    useEffect(()=>{
+        getCategories()
+    },[])
 
     return (
         <>

@@ -3,6 +3,8 @@ import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useEffect } from "react";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const EditProfile=({user})=>{
 
@@ -17,7 +19,7 @@ const EditProfile=({user})=>{
         setCountry(user.country)
         setMobile(user.mobile)
     },[user])
-    console.log(user);
+   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -26,7 +28,7 @@ const EditProfile=({user})=>{
         try {
 
             const body = {name,email,country,mobile };
-            const response = await fetch(`http://[::1]:8000/user/${user.id}`, {
+            const response = await fetch(`${process.env.REACT_APP_URL_PREFIX}/user/${user.id}`, {
                 method: "PATCH",
                 headers: { 
                 "Content-Type": "application/json",
@@ -35,11 +37,12 @@ const EditProfile=({user})=>{
             });
 
             const parseRes = await response.json();
-            console.log(parseRes);
+          
             
             window.location="/profile"
             } catch (err) {
-            console.error(err.message);
+            //console.error(err.message);
+            toast.error(err.message)
         }
     }
     return (
